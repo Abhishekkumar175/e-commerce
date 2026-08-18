@@ -41,6 +41,10 @@ export default {
         'image-zoom': {
           '0%': { transform: 'scale(1.05)' },
           '100%': { transform: 'scale(1)' },
+        },
+        'marquee': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' }
         }
       },
       animation: {
@@ -48,6 +52,7 @@ export default {
         'fade-in-up-delay': 'fade-in-up 0.8s ease-out 0.2s forwards',
         'fade-in-up-delay-2': 'fade-in-up 0.8s ease-out 0.4s forwards',
         'image-zoom': 'image-zoom 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+        'marquee': 'marquee 25s linear infinite',
       }
     },
   },
