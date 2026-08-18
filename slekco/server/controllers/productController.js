@@ -1,10 +1,10 @@
+const asyncHandler = require('express-async-handler');
 const { products, categories } = require('../data/mockData');
 
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
-const getProducts = (req, res) => {
-  // Can add basic filtering here for future tasks
+const getProducts = asyncHandler(async (req, res) => {
   const { category, search } = req.query;
   
   let result = [...products];
@@ -23,27 +23,28 @@ const getProducts = (req, res) => {
   }
   
   res.json(result);
-};
+});
 
 // @desc    Fetch single product
 // @route   GET /api/products/:id
 // @access  Public
-const getProductById = (req, res) => {
+const getProductById = asyncHandler(async (req, res) => {
   const product = products.find(p => p.id === req.params.id);
   
   if (product) {
     res.json(product);
   } else {
-    res.status(404).json({ message: 'Product not found' });
+    res.status(404);
+    throw new Error('Product not found');
   }
-};
+});
 
 // @desc    Fetch all categories
 // @route   GET /api/categories
 // @access  Public
-const getCategories = (req, res) => {
+const getCategories = asyncHandler(async (req, res) => {
   res.json(categories);
-};
+});
 
 module.exports = {
   getProducts,

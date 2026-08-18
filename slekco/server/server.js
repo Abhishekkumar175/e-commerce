@@ -1,20 +1,21 @@
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
-
-dotenv.config();
-
-const app = express();
-const PORT = process.env.PORT || 5000;
-
+require('dotenv').config();
+const connectDB = require('./config/db');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const productRoutes = require('./routes/productRoutes');
 
+const app = express();
+
+// Connect to database (or warn if no URI)
+connectDB();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Routes
 app.use('/api/products', productRoutes);
-// We can mount categories separately or let productRoutes handle /api/products/categories.
-// Let's mount the same router for /api/categories for cleanliness, or just rely on the router.
 app.use('/api/categories', (req, res, next) => {
   req.url = '/categories';
   productRoutes(req, res, next);
@@ -24,6 +25,11 @@ app.get('/', (req, res) => {
   res.send('Slekco API is running...');
 });
 
+// Error Middleware
+app.use(notFound);
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
 });
