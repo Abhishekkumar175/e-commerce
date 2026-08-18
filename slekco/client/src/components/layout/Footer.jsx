@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Twitter, Facebook } from 'lucide-react';
+import { Camera, MessageCircle, Share2 } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -63,15 +63,15 @@ const Footer = () => {
           <div className="flex space-x-6">
             <a href="#" className="text-secondary hover:text-primary transition-colors">
               <span className="sr-only">Instagram</span>
-              <Instagram className="h-5 w-5" />
+              <Camera className="h-5 w-5" />
             </a>
             <a href="#" className="text-secondary hover:text-primary transition-colors">
               <span className="sr-only">Twitter</span>
-              <Twitter className="h-5 w-5" />
+              <MessageCircle className="h-5 w-5" />
             </a>
             <a href="#" className="text-secondary hover:text-primary transition-colors">
               <span className="sr-only">Facebook</span>
-              <Facebook className="h-5 w-5" />
+              <Share2 className="h-5 w-5" />
             </a>
           </div>
         </div>
