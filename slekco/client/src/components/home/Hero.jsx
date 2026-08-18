@@ -1,7 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+const floatingProducts = [
+  {
+    brand: 'Atelier',
+    name: 'Minimalist Leather Tote',
+    price: '$295.00',
+    image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=400&auto=format&fit=crop'
+  },
+  {
+    brand: 'Aura',
+    name: 'Purifying Clay Mask',
+    price: '$45.00',
+    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=400&auto=format&fit=crop'
+  },
+  {
+    brand: 'Lumina',
+    name: 'Tortoiseshell Sunglasses',
+    price: '$165.00',
+    image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=400&auto=format&fit=crop'
+  }
+];
+
 const Hero = () => {
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentProductIndex((prev) => (prev + 1) % floatingProducts.length);
+    }, 4000); // Change every 4 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentProduct = floatingProducts[currentProductIndex];
+
   return (
     <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center bg-background overflow-hidden">
       {/* Background noise/texture for premium feel */}
@@ -32,23 +64,25 @@ const Hero = () => {
             {/* Main Editorial Image */}
             <div className="w-full h-full relative overflow-hidden group">
               <img 
-                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop" 
-                alt="Fashion Editorial" 
-                className="w-full h-full object-cover object-top scale-105 group-hover:scale-100 transition-transform duration-[2000ms] ease-out"
+                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop" 
+                alt="Fashion Shopping" 
+                className="w-full h-full object-cover object-center scale-105 group-hover:scale-100 transition-transform duration-[2000ms] ease-out"
               />
               <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-1000"></div>
             </div>
 
             {/* Floating Product Card */}
             <div className="absolute -bottom-8 -left-4 md:-bottom-12 md:-left-12 bg-surface p-4 shadow-premium max-w-[220px] animate-fade-in-up-delay-2 hidden sm:block">
-              <img 
-                src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=400&auto=format&fit=crop" 
-                alt="Leather Tote" 
-                className="w-full h-auto aspect-square object-cover mb-3"
-              />
-              <p className="text-xs text-secondary uppercase tracking-widest mb-1">Atelier</p>
-              <h4 className="font-display text-sm font-medium mb-2">Minimalist Leather Tote</h4>
-              <p className="text-sm font-semibold">$295.00</p>
+              <div key={currentProduct.name} className="animate-fade-in-up">
+                <img 
+                  src={currentProduct.image} 
+                  alt={currentProduct.name} 
+                  className="w-full h-auto aspect-square object-cover mb-3"
+                />
+                <p className="text-xs text-secondary uppercase tracking-widest mb-1">{currentProduct.brand}</p>
+                <h4 className="font-display text-sm font-medium mb-2">{currentProduct.name}</h4>
+                <p className="text-sm font-semibold">{currentProduct.price}</p>
+              </div>
             </div>
           </div>
 
