@@ -2,14 +2,14 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
-import MainLayout from '../layouts/MainLayout';
+import MainLayout from '../../layouts/MainLayout.jsx';
 
 // Lazy loaded pages
-const Home = lazy(() => import('../pages/Home'));
-const Shop = lazy(() => import('../pages/Shop'));
-const ProductDetail = lazy(() => import('../pages/ProductDetail'));
-const Cart = lazy(() => import('../pages/Cart'));
-const Checkout = lazy(() => import('../pages/Checkout'));
+const Home = lazy(() => import('../../pages/Home.jsx'));
+const Shop = lazy(() => import('../../pages/Shop.jsx'));
+const ProductDetail = lazy(() => import('../../pages/ProductDetail.jsx'));
+const Cart = lazy(() => import('../../pages/Cart.jsx'));
+const Checkout = lazy(() => import('../../pages/Checkout.jsx'));
 
 // Simple loading fallback
 const PageLoader = () => (
