@@ -29,11 +29,15 @@ const Cart = () => {
         <div className="w-full lg:w-2/3">
           <div className="border-t border-border">
             {items.map((item) => (
-              <div key={item.product.id} className="py-8 border-b border-border flex flex-col sm:flex-row gap-6">
+              <div key={item.product.id} className="py-8 border-b border-border flex flex-row gap-4 sm:gap-6">
                 
                 {/* Product Image */}
-                <div className="w-full sm:w-32 aspect-square bg-gray-100 rounded-card flex items-center justify-center text-secondary font-display uppercase flex-shrink-0">
-                  {item.product.brand.charAt(0)}
+                <div className="w-24 sm:w-32 aspect-square bg-gray-100 rounded-card flex items-center justify-center text-secondary font-display uppercase flex-shrink-0">
+                  {item.product.images && item.product.images.length > 0 ? (
+                    <img src={item.product.images[0]} alt={item.product.name} className="w-full h-full object-cover rounded-card" />
+                  ) : (
+                    item.product.brand.charAt(0)
+                  )}
                 </div>
                 
                 {/* Product Info */}

@@ -39,16 +39,16 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-6">Newsletter</h4>
             <p className="text-sm text-secondary mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
-            <form className="flex" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col sm:flex-row gap-2 sm:gap-0" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="w-full bg-surface border border-border px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors rounded-none"
+                className="w-full bg-surface border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors rounded-none"
                 required
               />
               <button
                 type="submit"
-                className="bg-primary text-surface px-6 py-2 text-sm font-medium uppercase tracking-wider hover:bg-black transition-colors rounded-none"
+                className="bg-primary text-surface px-6 py-3 text-sm font-medium uppercase tracking-wider hover:bg-black transition-colors rounded-none whitespace-nowrap"
               >
                 Subscribe
               </button>
