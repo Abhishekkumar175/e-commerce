@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Search, ShoppingBag, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { totalQuantity } = useSelector((state) => state.cart);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const navLinks = [
     { name: 'Shop', path: '/shop' },
@@ -13,60 +19,44 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md border-b border-border">
+    <nav className="sticky top-0 z-50 w-full bg-surface/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex justify-between items-center h-20">
           
           {/* Mobile Menu Button */}
-          <div className="flex items-center lg:hidden">
-            <button
-              type="button"
-              className="text-primary hover:text-secondary focus:outline-none transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <span className="sr-only">Open menu</span>
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="h-6 w-6" aria-hidden="true" />
-              )}
+          <div className="flex items-center md:hidden">
+            <button onClick={toggleMobileMenu} className="text-primary hover:text-secondary transition-colors p-2">
+              <Menu className="w-6 h-6" />
             </button>
           </div>
 
           {/* Logo */}
-          <div className="flex-1 flex justify-center lg:justify-start lg:flex-none">
-            <Link to="/" className="text-2xl font-display font-bold tracking-widest text-primary">
+          <div className="flex-shrink-0 flex items-center justify-center md:justify-start w-full md:w-auto absolute md:relative left-0 pointer-events-none md:pointer-events-auto">
+            <Link to="/" className="text-2xl font-display font-bold tracking-widest text-primary pointer-events-auto">
               SLEKCO
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex flex-1 justify-center items-center space-x-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className="text-sm font-medium text-primary hover:text-secondary transition-colors uppercase tracking-wider"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
+          <div className="hidden md:flex space-x-10">
+            <Link to="/shop" className="text-sm font-medium text-secondary hover:text-primary transition-colors">Shop</Link>
+            <Link to="/collections" className="text-sm font-medium text-secondary hover:text-primary transition-colors">Collections</Link>
+            <Link to="/brands" className="text-sm font-medium text-secondary hover:text-primary transition-colors">Brands</Link>
+            <Link to="/about" className="text-sm font-medium text-secondary hover:text-primary transition-colors">About</Link>
+          </div>
 
-          {/* Right Actions */}
-          <div className="flex items-center justify-end space-x-6 lg:flex-none">
-            <button className="text-primary hover:text-secondary transition-colors hidden sm:flex items-center space-x-2">
-              <Search className="h-5 w-5" />
-              <span className="text-sm font-medium uppercase tracking-wider hidden lg:block">Search</span>
+          {/* Icons */}
+          <div className="flex items-center space-x-6 z-10 bg-surface md:bg-transparent">
+            <button className="text-primary hover:text-secondary transition-colors hidden sm:block">
+              <Search className="w-5 h-5" />
             </button>
-            <button className="text-primary hover:text-secondary transition-colors sm:hidden">
-               <Search className="h-5 w-5" />
-            </button>
-            <Link to="/cart" className="group flex items-center p-2 -m-2">
-              <ShoppingBag className="flex-shrink-0 h-5 w-5 text-primary group-hover:text-secondary transition-colors" aria-hidden="true" />
-              <span className="ml-2 text-sm font-medium text-primary group-hover:text-secondary transition-colors hidden sm:block uppercase tracking-wider">Bag (0)</span>
-              {/* Mobile cart badge indicator if items exist */}
-              <span className="absolute top-4 right-4 sm:hidden bg-accent text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">0</span>
+            <Link to="/cart" className="text-primary hover:text-secondary transition-colors flex items-center space-x-2">
+              <ShoppingBag className="w-5 h-5" />
+              <span className="hidden sm:inline-block text-sm font-medium">Bag {totalQuantity > 0 ? `(${totalQuantity})` : ''}</span>
+              {/* Mobile total quantity dot */}
+              <span className="sm:hidden text-xs font-medium">
+                {totalQuantity > 0 ? `(${totalQuantity})` : ''}
+              </span>
             </Link>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductById, fetchProducts } from '../store/productSlice';
+import { addToCart } from '../store/cartSlice';
 import { Star, ChevronRight, Check, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
 import ProductCard from '../components/ui/ProductCard';
 
@@ -32,8 +33,7 @@ const ProductDetail = () => {
   };
 
   const handleAddToBag = () => {
-    // In Task 11 we will dispatch to actual cart Redux slice
-    // dispatch(addToCart({ product, quantity }));
+    dispatch(addToCart({ product, quantity }));
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 3000);
   };
