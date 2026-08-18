@@ -22,13 +22,14 @@ const ProductDetail = () => {
     if (status === 'idle') {
       dispatch(fetchProducts());
     }
-    // Also fetch specific product if we want to ensure full data
+  }, [status, dispatch]);
+
+  useEffect(() => {
     dispatch(fetchProductById(id));
-    // Reset state on ID change
     setSelectedImage(0);
     setIsAdded(false);
     window.scrollTo(0, 0);
-  }, [id, dispatch, status]);
+  }, [id, dispatch]);
 
   const handleAddToBag = () => {
     if (product) {

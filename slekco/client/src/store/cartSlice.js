@@ -1,9 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 // Helper to save to local storage
 const saveToLocalStorage = (state) => {
   try {
-    const serializedState = JSON.stringify(state);
+    const plainState = current(state);
+    const serializedState = JSON.stringify(plainState);
     localStorage.setItem('slekco_cart', serializedState);
   } catch (e) {
     console.warn("Could not save cart to local storage", e);

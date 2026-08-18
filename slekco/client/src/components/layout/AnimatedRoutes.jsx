@@ -22,8 +22,8 @@ const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <Suspense fallback={<PageLoader />}>
+    <Suspense fallback={<PageLoader />}>
+      <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
@@ -36,8 +36,8 @@ const AnimatedRoutes = () => {
             <Route path="checkout" element={<Checkout />} />
           </Route>
         </Routes>
-      </Suspense>
-    </AnimatePresence>
+      </AnimatePresence>
+    </Suspense>
   );
 };
 
