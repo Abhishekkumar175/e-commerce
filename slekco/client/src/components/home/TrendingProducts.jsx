@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../store/productSlice';
 import ProductCard from '../ui/ProductCard';
+import ProductSkeleton from '../ui/ProductSkeleton';
+import { AlertCircle, RotateCw } from 'lucide-react';
 
 const TrendingProducts = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,10 @@ const TrendingProducts = () => {
     }
   }, [status, dispatch]);
 
-  // We only want to show max 4 trending products
+  const handleRetry = () => {
+    dispatch(fetchProducts());
+  };
+
   const trendingProducts = items.slice(0, 4);
 
   return (
@@ -27,10 +32,32 @@ const TrendingProducts = () => {
           </Link>
         </div>
         
-        {status === 'loading' && <div className="text-center text-secondary py-10">Loading products...</div>}
-        {status === 'failed' && <div className="text-center text-red-500 py-10">{error}</div>}
+        {status === 'loading' && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[1, 2, 3, 4].map(n => <ProductSkeleton key={n} />)}
+          </div>
+        )}
+
+        {status === 'failed' && (
+          <div className="flex flex-col items-center justify-center py-20 bg-surface border border-border rounded-card">
+            <AlertCircle className="w-10 h-10 text-red-500 mb-4" />
+            <h3 className="text-lg font-medium text-primary mb-2">Something went wrong</h3>
+            <p className="text-sm text-secondary mb-6">{error || 'Failed to load trending products.'}</p>
+            <button onClick={handleRetry} className="flex items-center space-x-2 bg-primary text-surface px-6 py-3 rounded-button hover:bg-black transition-colors text-sm font-medium">
+              <RotateCw className="w-4 h-4" />
+              <span>Try Again</span>
+            </button>
+          </div>
+        )}
         
-        {status === 'succeeded' && (
+        {status === 'succeeded' && trendingProducts.length === 0 && (
+          <div className="text-center py-20 bg-surface border border-border rounded-card">
+            <h3 className="text-lg font-medium text-primary mb-2">No products found</h3>
+            <p className="text-sm text-secondary">Check back soon for new arrivals.</p>
+          </div>
+        )}
+
+        {status === 'succeeded' && trendingProducts.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {trendingProducts.map(product => (
               <ProductCard key={product.id} product={product} />

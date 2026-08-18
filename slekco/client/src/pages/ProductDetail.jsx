@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductById, fetchProducts } from '../store/productSlice';
 import { addToCart } from '../store/cartSlice';
-import { Star, ChevronRight, Check, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
+import { Star, ChevronRight, Check, ShieldCheck, Truck, RefreshCw, AlertCircle, RotateCw } from 'lucide-react';
 import ProductCard from '../components/ui/ProductCard';
 
 const ProductDetail = () => {
@@ -38,8 +38,41 @@ const ProductDetail = () => {
     setTimeout(() => setIsAdded(false), 3000);
   };
 
-  if (status === 'loading' && !product) return <div className="py-32 text-center text-secondary">Loading product details...</div>;
-  if (status === 'failed' && !product) return <div className="py-32 text-center text-red-500">Error loading product</div>;
+  if (status === 'loading' && !product) {
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-pulse">
+        <div className="h-4 bg-gray-200 rounded w-48 mb-10"></div>
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+          <div className="w-full lg:w-1/2 aspect-[3/4] bg-gray-200 rounded-card"></div>
+          <div className="w-full lg:w-1/2 mt-10 lg:mt-0">
+            <div className="h-4 bg-gray-200 rounded w-24 mb-4"></div>
+            <div className="h-10 bg-gray-200 rounded w-3/4 mb-6"></div>
+            <div className="h-8 bg-gray-200 rounded w-32 mb-8"></div>
+            <div className="h-24 bg-gray-200 rounded w-full mb-8"></div>
+            <div className="h-12 bg-gray-200 rounded w-full"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (status === 'failed' && !product) {
+    return (
+      <div className="container mx-auto px-4 py-32 flex flex-col items-center justify-center max-w-lg text-center">
+        <AlertCircle className="w-16 h-16 text-red-500 mb-6" />
+        <h1 className="text-3xl font-display font-bold text-primary mb-4">Product Not Found</h1>
+        <p className="text-secondary mb-8">The product you're looking for couldn't be loaded or doesn't exist.</p>
+        <button 
+          onClick={() => dispatch(fetchProductById(id))}
+          className="flex items-center justify-center space-x-2 bg-primary text-surface px-8 py-4 rounded-button font-medium uppercase tracking-wider hover:bg-black transition-colors w-full"
+        >
+          <RotateCw className="w-4 h-4" />
+          <span>Try Again</span>
+        </button>
+      </div>
+    );
+  }
+
   if (!product) return null;
 
   // Filter out the current product to get related products

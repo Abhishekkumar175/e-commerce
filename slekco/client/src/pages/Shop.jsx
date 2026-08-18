@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { fetchProducts } from '../store/productSlice';
 import ProductCard from '../components/ui/ProductCard';
-import { SlidersHorizontal, Search } from 'lucide-react';
+import ProductSkeleton from '../components/ui/ProductSkeleton';
+import { SlidersHorizontal, Search, AlertCircle, RotateCw } from 'lucide-react';
 
 const categoriesList = ['All', 'Fashion', 'Electronics', 'Home', 'Beauty', 'Accessories'];
 
@@ -119,11 +120,26 @@ const Shop = () => {
 
         {/* Product Grid */}
         <div className="flex-1">
-          {status === 'loading' && <div className="text-center text-secondary py-20">Loading collection...</div>}
-          {status === 'failed' && <div className="text-center text-red-500 py-20">{error}</div>}
+          {status === 'loading' && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map(n => <ProductSkeleton key={n} />)}
+            </div>
+          )}
+
+          {status === 'failed' && (
+            <div className="flex flex-col items-center justify-center py-20 bg-surface border border-border rounded-card">
+              <AlertCircle className="w-10 h-10 text-red-500 mb-4" />
+              <h3 className="text-lg font-medium text-primary mb-2">Something went wrong</h3>
+              <p className="text-sm text-secondary mb-6">{error || 'Failed to load products.'}</p>
+              <button onClick={() => dispatch(fetchProducts())} className="flex items-center space-x-2 bg-primary text-surface px-6 py-3 rounded-button hover:bg-black transition-colors text-sm font-medium">
+                <RotateCw className="w-4 h-4" />
+                <span>Try Again</span>
+              </button>
+            </div>
+          )}
           
           {status === 'succeeded' && filteredItems.length === 0 && (
-            <div className="text-center py-20">
+            <div className="flex flex-col items-center justify-center py-20 bg-surface border border-border rounded-card">
               <h3 className="text-xl text-primary mb-2">No products found</h3>
               <p className="text-secondary text-sm">Try adjusting your filters or search term.</p>
             </div>
