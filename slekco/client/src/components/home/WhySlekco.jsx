@@ -1,5 +1,6 @@
 import React from 'react';
 import { Package, Truck, ShieldCheck, RefreshCw } from 'lucide-react';
+import ScrollReveal from '../ui/ScrollReveal';
 
 const features = [
   {
@@ -27,21 +28,23 @@ const features = [
 const WhySlekco = () => {
   return (
     <section className="py-24 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-title text-center mb-16">Why Slekco</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
           {features.map((feature, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <div className="w-16 h-16 rounded-full bg-surface border border-border flex items-center justify-center text-primary mb-6 shadow-sm">
-                {feature.icon}
+            <ScrollReveal key={index} delay={index * 0.1}>
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full bg-surface border border-border flex items-center justify-center text-primary mb-6 shadow-sm">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-medium text-primary mb-3">{feature.title}</h3>
+                <p className="text-body text-sm max-w-[250px] mx-auto">{feature.description}</p>
               </div>
-              <h3 className="text-lg font-medium text-primary mb-3">{feature.title}</h3>
-              <p className="text-body text-sm max-w-[250px] mx-auto">{feature.description}</p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

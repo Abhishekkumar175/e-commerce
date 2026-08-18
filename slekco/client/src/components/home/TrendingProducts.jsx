@@ -5,6 +5,7 @@ import { fetchProducts } from '../../store/productSlice';
 import ProductCard from '../ui/ProductCard';
 import ProductSkeleton from '../ui/ProductSkeleton';
 import { AlertCircle, RotateCw } from 'lucide-react';
+import ScrollReveal from '../ui/ScrollReveal';
 
 const TrendingProducts = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const TrendingProducts = () => {
 
   return (
     <section className="py-24 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-12">
           <h2 className="text-title">Trending Now</h2>
           <Link to="/shop" className="text-sm font-medium text-secondary hover:text-primary transition-colors underline underline-offset-4">
@@ -34,7 +35,11 @@ const TrendingProducts = () => {
         
         {status === 'loading' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[1, 2, 3, 4].map(n => <ProductSkeleton key={n} />)}
+            {[1, 2, 3, 4].map((n, i) => (
+              <ScrollReveal key={n} delay={i * 0.1}>
+                <ProductSkeleton />
+              </ScrollReveal>
+            ))}
           </div>
         )}
 
@@ -59,12 +64,14 @@ const TrendingProducts = () => {
 
         {status === 'succeeded' && trendingProducts.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {trendingProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+            {trendingProducts.map((product, i) => (
+              <ScrollReveal key={product.id} delay={i * 0.1}>
+                <ProductCard product={product} />
+              </ScrollReveal>
             ))}
           </div>
         )}
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
