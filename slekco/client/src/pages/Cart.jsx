@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { removeFromCart, increaseQuantity, decreaseQuantity, clearCart } from '../store/cartSlice';
 import { Trash2, ChevronRight, ArrowRight } from 'lucide-react';
 
 import PageTransition from '../components/ui/PageTransition';
+import SEO from '../components/ui/SEO';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Cart = () => {
   if (items.length === 0) {
     return (
       <PageTransition>
+        <SEO title="Your Bag" description="View items in your shopping bag." />
         <div className="container mx-auto px-4 py-32 text-center">
           <h1 className="text-4xl font-display font-bold text-primary mb-6">Your Bag is Empty</h1>
           <p className="text-secondary mb-10">Looks like you haven't added anything to your bag yet.</p>
@@ -26,6 +28,7 @@ const Cart = () => {
 
   return (
     <PageTransition>
+      <SEO title="Your Bag" description="View items in your shopping bag." />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-display font-bold text-primary mb-12">Your Bag ({totalQuantity})</h1>
         

@@ -7,6 +7,7 @@ import { Star, ChevronRight, Check, ShieldCheck, Truck, RefreshCw, AlertCircle, 
 import ProductCard from '../components/ui/ProductCard';
 
 import PageTransition from '../components/ui/PageTransition';
+import SEO from '../components/ui/SEO';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -86,6 +87,11 @@ const ProductDetail = () => {
 
   return (
     <PageTransition>
+      <SEO 
+        title={product.name} 
+        description={product.description.substring(0, 150)} 
+        type="product" 
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Breadcrumb */}
         <nav className="flex items-center text-sm mb-10 text-secondary">
@@ -113,8 +119,9 @@ const ProductDetail = () => {
                     key={idx} 
                     onClick={() => setSelectedImage(idx)}
                     className={`aspect-square bg-gray-100 rounded-card overflow-hidden border-2 ${selectedImage === idx ? 'border-primary' : 'border-transparent'}`}
+                    aria-label={`View ${product.name} image ${idx + 1}`}
                   >
-                    <img src={img} alt={`${product.name} view ${idx + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`${product.name} view ${idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>

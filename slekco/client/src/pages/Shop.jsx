@@ -7,6 +7,7 @@ import ProductSkeleton from '../components/ui/ProductSkeleton';
 import { SlidersHorizontal, Search, AlertCircle, RotateCw } from 'lucide-react';
 
 import PageTransition from '../components/ui/PageTransition';
+import SEO from '../components/ui/SEO';
 
 const categoriesList = ['All', 'Fashion', 'Electronics', 'Home', 'Beauty', 'Accessories'];
 
@@ -66,6 +67,7 @@ const Shop = () => {
 
   return (
     <PageTransition>
+      <SEO title="Shop" description="Explore our full collection of carefully curated products." />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header Area */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 space-y-6 md:space-y-0">

@@ -5,6 +5,7 @@ import { clearCart } from '../store/cartSlice';
 import { CheckCircle, AlertCircle } from 'lucide-react';
 
 import PageTransition from '../components/ui/PageTransition';
+import SEO from '../components/ui/SEO';
 
 const Checkout = () => {
   const { items, subtotal, shipping, total } = useSelector((state) => state.cart);
@@ -94,6 +95,7 @@ const Checkout = () => {
   if (items.length === 0 && !isSuccess) {
     return (
       <PageTransition>
+        <SEO title="Checkout" description="Securely complete your purchase." />
         <div className="container mx-auto px-4 py-32 text-center">
           <h1 className="text-3xl font-display font-bold text-primary mb-6">Your Bag is Empty</h1>
           <Link to="/shop" className="inline-block bg-primary text-surface px-8 py-4 rounded-button font-medium uppercase tracking-wider hover:bg-black transition-colors">
@@ -107,6 +109,7 @@ const Checkout = () => {
   if (isSuccess) {
     return (
       <PageTransition>
+        <SEO title="Order Confirmed" description="Thank you for your purchase." />
         <div className="container mx-auto px-4 py-32 text-center max-w-lg">
           <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-8" />
           <h1 className="text-4xl font-display font-bold text-primary mb-4">Order Confirmed</h1>
@@ -121,6 +124,7 @@ const Checkout = () => {
 
   return (
     <PageTransition>
+      <SEO title="Checkout" description="Securely complete your purchase." />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-display font-bold text-primary mb-12">Checkout</h1>
         

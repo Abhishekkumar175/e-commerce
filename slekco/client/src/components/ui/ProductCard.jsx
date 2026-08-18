@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
     <div className="group cursor-pointer">
       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden mb-4 rounded-card">
         {hasImage ? (
-           <img src={product.images[0]} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+           <img src={product.images[0]} alt={name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
         ) : (
            <div className="w-full h-full bg-surface group-hover:scale-105 transition-transform duration-700 flex flex-col items-center justify-center text-secondary text-sm">
              <ImageOff className="w-8 h-8 mb-2 opacity-50" />
