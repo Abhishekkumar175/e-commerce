@@ -42,7 +42,7 @@ const Cart = () => {
                   {/* Product Image */}
                   <div className="w-24 sm:w-32 aspect-square bg-gray-100 rounded-card flex items-center justify-center text-secondary font-display uppercase flex-shrink-0">
                     {item.product.images && item.product.images.length > 0 ? (
-                      <img src={item.product.images[0]} alt={item.product.name} className="w-full h-full object-cover rounded-card" />
+                      <img src={item.product.images[0]} alt={item.product.name} loading="lazy" className="w-full h-full object-cover rounded-card" />
                     ) : (
                       item.product.brand.charAt(0)
                     )}
