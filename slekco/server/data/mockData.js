@@ -262,6 +262,54 @@ const products = [
     brand: 'Kinto',
     rating: 4.9,
     stock: 18
+  },
+  {
+    id: '23',
+    name: 'Signature Eau de Parfum',
+    slug: 'signature-eau-de-parfum',
+    description: 'A deeply evocative fragrance featuring notes of sandalwood, bergamot, and white musk.',
+    price: 185.00,
+    images: ['https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop'],
+    category: 'fragrance',
+    brand: 'Aura',
+    rating: 4.9,
+    stock: 25
+  },
+  {
+    id: '24',
+    name: 'Travel Rollerball Set',
+    slug: 'travel-rollerball-set',
+    description: 'A set of three distinct rollerball fragrances for on-the-go touch-ups.',
+    price: 85.00,
+    images: ['https://images.unsplash.com/photo-1585366119957-e9730761e0bb?q=80&w=800&auto=format&fit=crop'],
+    category: 'fragrance',
+    brand: 'Aura',
+    rating: 4.7,
+    stock: 40
+  },
+  {
+    id: '25',
+    name: 'Pure Silk Sleep Mask',
+    slug: 'pure-silk-sleep-mask',
+    description: 'Crafted from 100% pure mulberry silk to protect delicate skin and ensure deep rest.',
+    price: 55.00,
+    images: ['https://images.unsplash.com/photo-1617173873919-485a9bc837e3?q=80&w=800&auto=format&fit=crop'],
+    category: 'wellness',
+    brand: 'Atelier',
+    rating: 4.8,
+    stock: 35
+  },
+  {
+    id: '26',
+    name: 'Weighted Throw Blanket',
+    slug: 'weighted-throw-blanket',
+    description: 'A 15lb weighted blanket designed to reduce anxiety and promote better sleep.',
+    price: 210.00,
+    images: ['https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=800&auto=format&fit=crop'],
+    category: 'wellness',
+    brand: 'Kinto',
+    rating: 4.9,
+    stock: 12
   }
 ];
 
@@ -269,7 +317,9 @@ const categories = [
   { id: 'c1', name: 'Fashion', slug: 'fashion', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=800&auto=format&fit=crop' },
   { id: 'c2', name: 'Beauty', slug: 'beauty', image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop' },
   { id: 'c3', name: 'Accessories', slug: 'accessories', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop' },
-  { id: 'c4', name: 'Home', slug: 'home', image: 'https://images.unsplash.com/photo-1613511874404-586b6a3746a5?q=80&w=800&auto=format&fit=crop' },
+  { id: 'c4', name: 'Home', slug: 'home', image: 'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?q=80&w=800&auto=format&fit=crop' },
+  { id: 'c5', name: 'Fragrance', slug: 'fragrance', image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop' },
+  { id: 'c6', name: 'Wellness', slug: 'wellness', image: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=800&auto=format&fit=crop' },
 ];
 
 module.exports = { products, categories };

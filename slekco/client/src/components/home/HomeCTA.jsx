@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const HomeCTA = () => {
   return (
-    <section className="relative py-32 overflow-hidden flex items-center justify-center min-h-[60vh]">
+    <section className="relative py-20 overflow-hidden flex items-center justify-center min-h-[40vh] md:min-h-[50vh]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 

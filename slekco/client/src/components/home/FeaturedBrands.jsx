@@ -4,9 +4,9 @@ const brands = ['ATELIER', 'KINTO', 'AETHEL', 'AURA', 'LUMINA', 'VOID'];
 
 const FeaturedBrands = () => {
   return (
-    <section className="py-20 border-y border-border bg-surface overflow-hidden">
+    <section className="py-12 border-y border-border bg-surface overflow-hidden">
       <div className="w-full">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-secondary mb-10 text-center">Featured Brands</h2>
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-secondary mb-8 text-center">Featured Brands</h2>
         
         {/* Marquee Wrapper */}
         <div className="relative w-full overflow-hidden flex whitespace-nowrap opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">

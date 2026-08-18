@@ -24,9 +24,9 @@ const TrendingProducts = () => {
   const trendingProducts = items.slice(0, 4);
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-16 bg-background">
       <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-16 border-b border-border pb-4">
+        <div className="flex justify-between items-end mb-10 border-b border-border pb-4">
           <h2 className="text-3xl md:text-4xl font-display font-medium text-primary">Trending Now</h2>
           <Link to="/shop" className="text-xs uppercase tracking-widest font-medium text-secondary hover:text-primary transition-colors pb-1">
             View All

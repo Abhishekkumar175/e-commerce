@@ -3,7 +3,7 @@ import { Truck, Shield, RefreshCw } from 'lucide-react';
 
 const WhySlekco = () => {
   return (
-    <section className="border-b border-border bg-surface py-8">
+    <section className="border-b border-border bg-surface py-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border">
           
