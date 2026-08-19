@@ -1,14 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { removeFromCart, increaseQuantity, decreaseQuantity, clearCart } from '../store/cartSlice';
-import { Trash2, ChevronRight, ArrowRight } from 'lucide-react';
+import { Trash2, ChevronRight, ArrowRight, ArrowLeft } from 'lucide-react';
 
 import PageTransition from '../components/ui/PageTransition';
 import SEO from '../components/ui/SEO';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { items, subtotal, shipping, total, totalQuantity } = useSelector((state) => state.cart);
 
   if (items.length === 0) {
@@ -29,8 +30,14 @@ const Cart = () => {
   return (
     <PageTransition>
       <SEO title="Your Bag" description="View items in your shopping bag." />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-display font-bold text-primary mb-12">Your Bag ({totalQuantity})</h1>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <button 
+          onClick={() => navigate(-1)} 
+          className="flex items-center text-secondary hover:text-primary transition-colors text-xs font-medium uppercase tracking-wider mb-6 w-max"
+        >
+          <ArrowLeft className="w-4 h-4 mr-1" /> Back
+        </button>
+        <h1 className="text-3xl font-display font-bold text-primary mb-8">Your Bag ({totalQuantity})</h1>
         
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Cart Items List */}

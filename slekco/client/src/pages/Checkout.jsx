@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { clearCart } from '../store/cartSlice';
-import { CheckCircle, AlertCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react';
 
 import PageTransition from '../components/ui/PageTransition';
 import SEO from '../components/ui/SEO';
@@ -125,164 +125,109 @@ const Checkout = () => {
   return (
     <PageTransition>
       <SEO title="Checkout" description="Securely complete your purchase." />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-display font-bold text-primary mb-12">Checkout</h1>
+      <div className="w-full h-[calc(100vh-80px)] flex items-center justify-center p-4 sm:p-6 bg-background">
         
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
+        <div className="w-full max-w-5xl bg-surface border border-border shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row h-[85vh] max-h-[750px]">
           
-          {/* Form Section */}
-          <div className="w-full lg:w-3/5">
-            <form onSubmit={handleSubmit} className="space-y-8" noValidate>
-              
-              <div>
-                <h2 className="text-lg font-bold text-primary mb-6">Contact Information</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  
-                  {/* Name */}
-                  <div className="col-span-1 md:col-span-2">
-                    <label className="block text-xs font-semibold text-primary uppercase tracking-wider mb-2">Full Name</label>
-                    <input 
-                      type="text" 
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className={`w-full bg-surface border ${errors.name ? 'border-red-500 focus:border-red-500' : 'border-border focus:border-primary'} px-4 py-3 text-sm focus:outline-none transition-colors`}
-                      placeholder="Jane Doe"
-                    />
-                    {errors.name && (
-                      <div className="flex items-center text-red-500 text-xs mt-2 font-medium">
-                        <AlertCircle className="w-3 h-3 mr-1" /> {errors.name}
-                      </div>
-                    )}
+          {/* Form Section (Left) */}
+          <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col overflow-y-auto custom-scrollbar">
+            <button 
+              onClick={() => navigate(-1)} 
+              className="flex items-center text-secondary hover:text-primary transition-colors text-xs font-medium uppercase tracking-wider mb-6 w-max"
+            >
+              <ArrowLeft className="w-4 h-4 mr-1" /> Back
+            </button>
+            <h1 className="text-2xl font-display font-bold text-primary mb-6">Checkout</h1>
+            
+            <form onSubmit={handleSubmit} className="flex flex-col flex-grow justify-between" noValidate>
+              <div className="space-y-6">
+                
+                {/* Contact Information */}
+                <div>
+                  <h2 className="text-sm font-bold text-primary uppercase tracking-wider mb-3">Contact Information</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="col-span-1 md:col-span-2">
+                      <input 
+                        type="text" name="name" value={formData.name} onChange={handleChange}
+                        className={`w-full bg-background border ${errors.name ? 'border-red-500' : 'border-border'} px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors`}
+                        placeholder="Full Name"
+                      />
+                    </div>
+                    <div>
+                      <input 
+                        type="email" name="email" value={formData.email} onChange={handleChange}
+                        className={`w-full bg-background border ${errors.email ? 'border-red-500' : 'border-border'} px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors`}
+                        placeholder="Email Address"
+                      />
+                    </div>
+                    <div>
+                      <input 
+                        type="tel" name="phone" value={formData.phone} onChange={handleChange}
+                        className={`w-full bg-background border ${errors.phone ? 'border-red-500' : 'border-border'} px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors`}
+                        placeholder="Phone Number"
+                      />
+                    </div>
                   </div>
+                </div>
 
-                  {/* Email */}
-                  <div>
-                    <label className="block text-xs font-semibold text-primary uppercase tracking-wider mb-2">Email</label>
-                    <input 
-                      type="email" 
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className={`w-full bg-surface border ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-border focus:border-primary'} px-4 py-3 text-sm focus:outline-none transition-colors`}
-                      placeholder="jane@example.com"
-                    />
-                    {errors.email && (
-                      <div className="flex items-center text-red-500 text-xs mt-2 font-medium">
-                        <AlertCircle className="w-3 h-3 mr-1" /> {errors.email}
-                      </div>
-                    )}
+                {/* Shipping Address */}
+                <div className="pt-2">
+                  <h2 className="text-sm font-bold text-primary uppercase tracking-wider mb-3">Shipping Address</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="col-span-1 md:col-span-2">
+                      <input 
+                        type="text" name="address" value={formData.address} onChange={handleChange}
+                        className={`w-full bg-background border ${errors.address ? 'border-red-500' : 'border-border'} px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors`}
+                        placeholder="Street Address"
+                      />
+                    </div>
+                    <div>
+                      <input 
+                        type="text" name="city" value={formData.city} onChange={handleChange}
+                        className={`w-full bg-background border ${errors.city ? 'border-red-500' : 'border-border'} px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors`}
+                        placeholder="City"
+                      />
+                    </div>
+                    <div>
+                      <input 
+                        type="text" name="postalCode" value={formData.postalCode} onChange={handleChange}
+                        className={`w-full bg-background border ${errors.postalCode ? 'border-red-500' : 'border-border'} px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors`}
+                        placeholder="Postal Code"
+                      />
+                    </div>
                   </div>
-
-                  {/* Phone */}
-                  <div>
-                    <label className="block text-xs font-semibold text-primary uppercase tracking-wider mb-2">Phone</label>
-                    <input 
-                      type="tel" 
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className={`w-full bg-surface border ${errors.phone ? 'border-red-500 focus:border-red-500' : 'border-border focus:border-primary'} px-4 py-3 text-sm focus:outline-none transition-colors`}
-                      placeholder="+1 (555) 000-0000"
-                    />
-                    {errors.phone && (
-                      <div className="flex items-center text-red-500 text-xs mt-2 font-medium">
-                        <AlertCircle className="w-3 h-3 mr-1" /> {errors.phone}
-                      </div>
-                    )}
-                  </div>
-
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-border">
-                <h2 className="text-lg font-bold text-primary mb-6">Shipping Address</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  
-                  {/* Address */}
-                  <div className="col-span-1 md:col-span-2">
-                    <label className="block text-xs font-semibold text-primary uppercase tracking-wider mb-2">Street Address</label>
-                    <input 
-                      type="text" 
-                      name="address"
-                      value={formData.address}
-                      onChange={handleChange}
-                      className={`w-full bg-surface border ${errors.address ? 'border-red-500 focus:border-red-500' : 'border-border focus:border-primary'} px-4 py-3 text-sm focus:outline-none transition-colors`}
-                      placeholder="123 Slekco Ave, Suite 100"
-                    />
-                    {errors.address && (
-                      <div className="flex items-center text-red-500 text-xs mt-2 font-medium">
-                        <AlertCircle className="w-3 h-3 mr-1" /> {errors.address}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* City */}
-                  <div>
-                    <label className="block text-xs font-semibold text-primary uppercase tracking-wider mb-2">City</label>
-                    <input 
-                      type="text" 
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      className={`w-full bg-surface border ${errors.city ? 'border-red-500 focus:border-red-500' : 'border-border focus:border-primary'} px-4 py-3 text-sm focus:outline-none transition-colors`}
-                      placeholder="New York"
-                    />
-                    {errors.city && (
-                      <div className="flex items-center text-red-500 text-xs mt-2 font-medium">
-                        <AlertCircle className="w-3 h-3 mr-1" /> {errors.city}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Postal Code */}
-                  <div>
-                    <label className="block text-xs font-semibold text-primary uppercase tracking-wider mb-2">Postal Code</label>
-                    <input 
-                      type="text" 
-                      name="postalCode"
-                      value={formData.postalCode}
-                      onChange={handleChange}
-                      className={`w-full bg-surface border ${errors.postalCode ? 'border-red-500 focus:border-red-500' : 'border-border focus:border-primary'} px-4 py-3 text-sm focus:outline-none transition-colors`}
-                      placeholder="10001"
-                    />
-                    {errors.postalCode && (
-                      <div className="flex items-center text-red-500 text-xs mt-2 font-medium">
-                        <AlertCircle className="w-3 h-3 mr-1" /> {errors.postalCode}
-                      </div>
-                    )}
-                  </div>
-
-                </div>
+              <div className="mt-8">
+                <button 
+                  type="submit" 
+                  className="w-full bg-primary text-surface py-3 rounded-none font-medium uppercase tracking-wider hover:bg-black transition-colors"
+                >
+                  Complete Order
+                </button>
               </div>
-
-              <button 
-                type="submit" 
-                className="w-full bg-primary text-surface py-4 rounded-button font-medium uppercase tracking-wider hover:bg-black hover:shadow-premium-hover transition-all mt-8"
-              >
-                Complete Order
-              </button>
             </form>
           </div>
 
-          {/* Order Summary Section */}
-          <div className="w-full lg:w-2/5">
-            <div className="bg-gray-50 rounded-card p-6 md:p-8 sticky top-28 border border-border">
-              <h2 className="text-lg font-bold text-primary mb-6">In Your Bag</h2>
-              
-              <div className="space-y-4 mb-8">
-                {items.map(item => (
-                  <div key={item.product.id} className="flex justify-between items-start gap-4">
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-primary line-clamp-1">{item.product.name}</p>
-                      <p className="text-xs text-secondary mt-1">Qty: {item.quantity}</p>
-                    </div>
-                    <p className="text-sm font-medium text-primary">${(item.product.price * item.quantity).toFixed(2)}</p>
+          {/* Order Summary Section (Right) */}
+          <div className="w-full md:w-2/5 bg-gray-50 p-6 md:p-8 border-l border-border flex flex-col">
+            <h2 className="text-lg font-bold text-primary mb-6">In Your Bag</h2>
+            
+            <div className="flex-grow overflow-y-auto custom-scrollbar pr-2 space-y-4 mb-6">
+              {items.map(item => (
+                <div key={item.product.id} className="flex justify-between items-start gap-3">
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-primary line-clamp-1">{item.product.name}</p>
+                    <p className="text-xs text-secondary mt-1">Qty: {item.quantity}</p>
                   </div>
-                ))}
-              </div>
+                  <p className="text-sm font-medium text-primary">${(item.product.price * item.quantity).toFixed(2)}</p>
+                </div>
+              ))}
+            </div>
 
-              <div className="space-y-4 border-t border-border pt-6 mb-6">
+            <div className="mt-auto">
+              <div className="space-y-3 border-t border-border pt-4 mb-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-secondary">Subtotal</span>
                   <span className="font-medium text-primary">${subtotal.toFixed(2)}</span>
@@ -293,9 +238,9 @@ const Checkout = () => {
                 </div>
               </div>
               
-              <div className="flex justify-between items-center border-t border-border pt-6">
-                <span className="text-lg font-bold text-primary">Total</span>
-                <span className="text-2xl font-bold text-primary">${total.toFixed(2)}</span>
+              <div className="flex justify-between items-center border-t border-border pt-4">
+                <span className="text-base font-bold text-primary uppercase tracking-wider">Total</span>
+                <span className="text-xl font-bold text-primary">${total.toFixed(2)}</span>
               </div>
             </div>
           </div>

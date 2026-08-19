@@ -83,8 +83,10 @@ const ProductDetail = () => {
 
   if (!product) return null;
 
-  // Filter out the current product to get related products
-  const relatedProducts = items.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+  // Get related products (same category first, then others to fill 5 spots)
+  const sameCategory = items.filter(p => p.category === product.category && p.id !== product.id);
+  const otherCategory = items.filter(p => p.category !== product.category && p.id !== product.id);
+  const relatedProducts = [...sameCategory, ...otherCategory].slice(0, 5);
 
   return (
     <PageTransition>
@@ -105,8 +107,8 @@ const ProductDetail = () => {
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 mb-24">
           {/* Image Gallery */}
-          <div className="w-full lg:w-1/2">
-            <div className="relative aspect-[3/4] bg-gray-100 mb-4 rounded-card overflow-hidden">
+          <div className="w-full lg:w-5/12">
+            <div className="relative aspect-square bg-gray-100 mb-4 rounded-card overflow-hidden">
               <img 
                 src={product.images[selectedImage]} 
                 alt={product.name} 
@@ -130,7 +132,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Product Info */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center">
+          <div className="w-full lg:w-7/12 flex flex-col justify-center lg:pl-10">
             <p className="text-xs font-semibold uppercase tracking-wider text-secondary mb-2">{product.brand}</p>
             <h1 className="text-4xl lg:text-5xl font-display font-bold text-primary mb-4 leading-tight">{product.name}</h1>
             
@@ -198,7 +200,7 @@ const ProductDetail = () => {
         {relatedProducts.length > 0 && (
           <div className="border-t border-border pt-16">
             <h2 className="text-2xl font-display font-bold text-primary mb-10">You May Also Like</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
               {relatedProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
