@@ -5,7 +5,7 @@ Slekco is a premium, minimalist e-commerce platform offering a curated selection
 ## Live Demo
 *[Link to live demo to be added post-deployment]*
 
-![Slekco Hero Section](docs/hero-screenshot.png)
+![Slekco Hero Section](client/public/hero-screenshot.png)
 
 ## Overview
 Slekco was built to challenge the cluttered, high-anxiety environments of traditional e-commerce. By stripping away non-essential elements, utilizing a muted color palette, and focusing on high-quality editorial imagery, the platform creates a calming digital environment where the products speak for themselves.
