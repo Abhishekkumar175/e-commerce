@@ -39,13 +39,13 @@ const ProductCard = ({ product }) => {
             e.stopPropagation();
             if (product) dispatch(toggleWishlist(product));
           }}
-          className={`absolute top-4 right-4 transition-colors z-10 bg-white/80 backdrop-blur p-2 rounded-full opacity-0 group-hover:opacity-100 duration-300 ${isWishlisted ? 'text-red-500 opacity-100' : 'text-secondary hover:text-accent'}`}
+          className={`absolute top-4 right-4 transition-colors z-10 bg-white/80 backdrop-blur p-2 rounded-full opacity-100 lg:opacity-0 lg:group-hover:opacity-100 duration-300 ${isWishlisted ? 'text-red-500 opacity-100 lg:opacity-100' : 'text-secondary hover:text-accent'}`}
         >
           <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
         </button>
 
         {/* Quick Add Button Overlay */}
-        <div className={`absolute bottom-4 left-4 right-4 transition-opacity duration-300 z-10 ${isAdded ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+        <div className={`absolute bottom-4 left-4 right-4 transition-opacity duration-300 z-10 ${isAdded ? 'opacity-100' : 'opacity-100 lg:opacity-0 lg:group-hover:opacity-100'}`}>
           <button 
             onClick={(e) => {
               e.preventDefault();
