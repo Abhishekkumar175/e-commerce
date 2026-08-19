@@ -15,6 +15,9 @@ const Shipping = lazy(() => import('../../pages/Shipping.jsx'));
 const Contact = lazy(() => import('../../pages/Contact.jsx'));
 const Terms = lazy(() => import('../../pages/Terms.jsx'));
 const Wishlist = lazy(() => import('../../pages/Wishlist.jsx'));
+const Collections = lazy(() => import('../../pages/Collections.jsx'));
+const Brands = lazy(() => import('../../pages/Brands.jsx'));
+const About = lazy(() => import('../../pages/About.jsx'));
 
 // Simple loading fallback
 const PageLoader = () => (
@@ -34,9 +37,9 @@ const AnimatedRoutes = () => {
             <Route index element={<Home />} />
             <Route path="shop" element={<Shop />} />
             <Route path="product/:id" element={<ProductDetail />} />
-            <Route path="collections" element={<Shop />} />
-            <Route path="brands" element={<Shop />} />
-            <Route path="about" element={<Shop />} />
+            <Route path="collections" element={<Collections />} />
+            <Route path="brands" element={<Brands />} />
+            <Route path="about" element={<About />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
             <Route path="faq" element={<FAQ />} />
