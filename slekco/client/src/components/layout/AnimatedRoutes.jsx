@@ -14,6 +14,7 @@ const FAQ = lazy(() => import('../../pages/FAQ.jsx'));
 const Shipping = lazy(() => import('../../pages/Shipping.jsx'));
 const Contact = lazy(() => import('../../pages/Contact.jsx'));
 const Terms = lazy(() => import('../../pages/Terms.jsx'));
+const Wishlist = lazy(() => import('../../pages/Wishlist.jsx'));
 
 // Simple loading fallback
 const PageLoader = () => (
@@ -42,6 +43,7 @@ const AnimatedRoutes = () => {
             <Route path="shipping" element={<Shipping />} />
             <Route path="contact" element={<Contact />} />
             <Route path="terms" element={<Terms />} />
+            <Route path="wishlist" element={<Wishlist />} />
           </Route>
         </Routes>
       </AnimatePresence>

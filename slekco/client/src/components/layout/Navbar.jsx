@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Search, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, ShoppingBag, Menu, Heart } from 'lucide-react';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalQuantity } = useSelector((state) => state.cart);
+  const wishlistItems = useSelector((state) => state.wishlist?.items || []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -46,17 +47,26 @@ const Navbar = () => {
           </div>
 
           {/* Icons */}
-          <div className="flex items-center space-x-6 z-10 bg-surface md:bg-transparent">
+          <div className="flex items-center space-x-5 sm:space-x-6 z-10 bg-surface md:bg-transparent">
             <button className="text-primary hover:text-secondary transition-colors hidden sm:block">
               <Search className="w-5 h-5" />
             </button>
-            <Link to="/cart" className="text-primary hover:text-secondary transition-colors flex items-center space-x-2">
-              <ShoppingBag className="w-5 h-5" />
+            <Link to="/wishlist" className="text-primary hover:text-secondary transition-colors relative">
+              <Heart className="w-5 h-5" />
+              {wishlistItems.length > 0 && (
+                <span className="absolute -top-1 -right-1.5 bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {wishlistItems.length}
+                </span>
+              )}
+            </Link>
+            <Link to="/cart" className="text-primary hover:text-secondary transition-colors flex items-center space-x-1 sm:space-x-2">
+              <div className="relative">
+                <ShoppingBag className="w-5 h-5" />
+                <span className="sm:hidden absolute -top-1 -right-1.5 bg-primary text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {totalQuantity}
+                </span>
+              </div>
               <span className="hidden sm:inline-block text-sm font-medium">Bag {totalQuantity > 0 ? `(${totalQuantity})` : ''}</span>
-              {/* Mobile total quantity dot */}
-              <span className="sm:hidden text-xs font-medium">
-                {totalQuantity > 0 ? `(${totalQuantity})` : ''}
-              </span>
             </Link>
           </div>
         </div>
