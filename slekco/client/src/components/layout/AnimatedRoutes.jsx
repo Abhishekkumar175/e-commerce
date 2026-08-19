@@ -10,6 +10,10 @@ const Shop = lazy(() => import('../../pages/Shop.jsx'));
 const ProductDetail = lazy(() => import('../../pages/ProductDetail.jsx'));
 const Cart = lazy(() => import('../../pages/Cart.jsx'));
 const Checkout = lazy(() => import('../../pages/Checkout.jsx'));
+const FAQ = lazy(() => import('../../pages/FAQ.jsx'));
+const Shipping = lazy(() => import('../../pages/Shipping.jsx'));
+const Contact = lazy(() => import('../../pages/Contact.jsx'));
+const Terms = lazy(() => import('../../pages/Terms.jsx'));
 
 // Simple loading fallback
 const PageLoader = () => (
@@ -34,6 +38,10 @@ const AnimatedRoutes = () => {
             <Route path="about" element={<Shop />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
+            <Route path="faq" element={<FAQ />} />
+            <Route path="shipping" element={<Shipping />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="terms" element={<Terms />} />
           </Route>
         </Routes>
       </AnimatePresence>

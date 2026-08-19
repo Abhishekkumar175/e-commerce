@@ -310,6 +310,66 @@ const products = [
     brand: 'Kinto',
     rating: 4.9,
     stock: 12
+  },
+  {
+    id: '27',
+    name: '18k Gold Chain Necklace',
+    slug: '18k-gold-chain-necklace',
+    description: 'A delicate and timeless 18k solid gold chain necklace, perfect for layering.',
+    price: 450.00,
+    images: ['https://images.unsplash.com/photo-1599643478524-fb66f7ca065b?q=80&w=800&auto=format&fit=crop'],
+    category: 'jewelry',
+    brand: 'Atelier',
+    rating: 4.9,
+    stock: 15
+  },
+  {
+    id: '28',
+    name: 'Baroque Pearl Drop Earrings',
+    slug: 'baroque-pearl-drop-earrings',
+    description: 'Unique baroque pearls set in 14k gold for an elegant, asymmetrical look.',
+    price: 285.00,
+    images: ['https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop'],
+    category: 'jewelry',
+    brand: 'Lumina',
+    rating: 4.8,
+    stock: 20
+  },
+  {
+    id: '29',
+    name: 'Diamond Tennis Bracelet',
+    slug: 'diamond-tennis-bracelet',
+    description: 'A stunning minimalist tennis bracelet featuring lab-grown diamonds.',
+    price: 1200.00,
+    images: ['https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop'],
+    category: 'jewelry',
+    brand: 'Atelier',
+    rating: 5.0,
+    stock: 5
+  },
+  {
+    id: '30',
+    name: 'Minimalist Signet Ring',
+    slug: 'minimalist-signet-ring',
+    description: 'A modern take on the classic signet ring, cast in solid sterling silver.',
+    price: 150.00,
+    images: ['https://images.unsplash.com/photo-1605100804763-247f67b2548e?q=80&w=800&auto=format&fit=crop'],
+    category: 'jewelry',
+    brand: 'Lumina',
+    rating: 4.7,
+    stock: 30
+  },
+  {
+    id: '31',
+    name: 'Vintage Silver Watch',
+    slug: 'vintage-silver-watch',
+    description: 'A beautifully restored vintage-inspired silver watch with a minimalist dial.',
+    price: 350.00,
+    images: ['https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=800&auto=format&fit=crop'],
+    category: 'jewelry',
+    brand: 'Kinto',
+    rating: 4.9,
+    stock: 8
   }
 ];
 
@@ -320,6 +380,7 @@ const categories = [
   { id: 'c4', name: 'Home', slug: 'home', image: 'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?q=80&w=800&auto=format&fit=crop' },
   { id: 'c5', name: 'Fragrance', slug: 'fragrance', image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop' },
   { id: 'c6', name: 'Wellness', slug: 'wellness', image: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=800&auto=format&fit=crop' },
+  { id: 'c7', name: 'Jewelry', slug: 'jewelry', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop' },
 ];
 
 module.exports = { products, categories };
