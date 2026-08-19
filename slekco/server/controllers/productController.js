@@ -1,5 +1,16 @@
 const asyncHandler = require('express-async-handler');
-const { products, categories } = require('../data/mockData');
+const Product = require('../models/Product');
+const { categories } = require('../data/mockData'); // keep categories static for now
+
+// Helper to map DB model to frontend structure (since isNew is reserved in mongoose)
+const mapProduct = (doc) => {
+  const obj = doc.toObject();
+  obj.isNew = obj.isNewProduct;
+  delete obj.isNewProduct;
+  delete obj._id;
+  delete obj.__v;
+  return obj;
+};
 
 // @desc    Fetch all products
 // @route   GET /api/products
@@ -7,32 +18,33 @@ const { products, categories } = require('../data/mockData');
 const getProducts = asyncHandler(async (req, res) => {
   const { category, search } = req.query;
   
-  let result = [...products];
+  let query = {};
   
   if (category) {
-    result = result.filter(p => p.category === category);
+    query.category = category;
   }
   
   if (search) {
     const term = search.toLowerCase();
-    result = result.filter(p => 
-      p.name.toLowerCase().includes(term) || 
-      p.description.toLowerCase().includes(term) ||
-      p.brand.toLowerCase().includes(term)
-    );
+    query.$or = [
+      { name: { $regex: term, $options: 'i' } },
+      { description: { $regex: term, $options: 'i' } },
+      { brand: { $regex: term, $options: 'i' } }
+    ];
   }
   
-  res.json(result);
+  const products = await Product.find(query);
+  res.json(products.map(mapProduct));
 });
 
 // @desc    Fetch single product
 // @route   GET /api/products/:id
 // @access  Public
 const getProductById = asyncHandler(async (req, res) => {
-  const product = products.find(p => p.id === req.params.id);
+  const product = await Product.findOne({ id: req.params.id });
   
   if (product) {
-    res.json(product);
+    res.json(mapProduct(product));
   } else {
     res.status(404);
     throw new Error('Product not found');
