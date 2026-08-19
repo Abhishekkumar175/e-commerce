@@ -3,7 +3,7 @@
 Slekco is a premium, minimalist e-commerce platform offering a curated selection of fashion, beauty, and everyday luxury essentials. Designed with an editorial aesthetic and a philosophy rooted in wabi-sabi, it provides users with a serene and effortless shopping experience.
 
 ## Live Demo
-*[Link to live demo to be added post-deployment]*
+*https://slekco-web.vercel.app/*
 
 ![Slekco Hero Section](docs/hero-screenshot.png)
 
