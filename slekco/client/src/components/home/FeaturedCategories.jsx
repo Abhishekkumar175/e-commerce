@@ -12,13 +12,18 @@ const categories = [
   { name: 'Jewelry', slug: 'jewelry', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop' },
 ];
 
+import { ArrowRight } from 'lucide-react';
+
 const FeaturedCategories = () => {
+  // Show only first 5 to make room for the "View More" circle, keeping it at 6 total items for 1 row on laptop
+  const displayCategories = categories.slice(0, 5);
+
   return (
     <section className="py-16 bg-surface border-b border-border">
       <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-display font-medium mb-12 text-center text-primary">Shop by Category</h2>
         <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-          {categories.map((category, index) => (
+          {displayCategories.map((category, index) => (
             <ScrollReveal key={category.slug} delay={index * 0.1}>
               <Link 
                 to={`/shop?category=${category.slug}`}
@@ -37,6 +42,21 @@ const FeaturedCategories = () => {
               </Link>
             </ScrollReveal>
           ))}
+          
+          {/* View More Circle */}
+          <ScrollReveal delay={0.5}>
+            <Link 
+              to="/collections" 
+              className="group flex flex-col items-center"
+            >
+              <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden mb-6 shadow-sm group-hover:shadow-premium transition-all duration-500 bg-primary flex items-center justify-center">
+                 <ArrowRight className="text-white w-8 h-8 group-hover:translate-x-2 transition-transform duration-300" />
+              </div>
+              <span className="text-sm font-semibold uppercase tracking-widest text-primary group-hover:text-secondary transition-colors duration-300">
+                View More
+              </span>
+            </Link>
+          </ScrollReveal>
         </div>
       </ScrollReveal>
     </section>
