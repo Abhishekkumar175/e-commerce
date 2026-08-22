@@ -139,6 +139,5 @@ This project was developed with the assistance of **Google Antigravity**. AI was
 - **Image Optimization:** All heavy lifestyle and product images are appropriately sized and compressed.
 
 ## Future Improvements
-- **Database Integration:** Swap the mock data engine with a live MongoDB instance using Mongoose.
 - **Authentication:** Implement JWT-based user authentication and user profiles for order history.
 - **Payment Gateway:** Integrate the Stripe API to process real transactions in the checkout flow.
